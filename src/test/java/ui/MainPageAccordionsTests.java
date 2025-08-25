@@ -21,10 +21,13 @@ public class MainPageAccordionsTests {
      */
     private WebDriver webDriver;
 
+    /** Ожидаемый текст в заголовке раскрывающегося блока */
     private  final String expectedHeaderText;
 
+    /** Ожидаемый текст в раскрывающемся блоке */
     private final String expectedItemText;
 
+    /** Индекс элемента */
     private final int indexOfElement;
 
     /**
