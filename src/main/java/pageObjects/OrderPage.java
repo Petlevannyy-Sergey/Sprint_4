@@ -28,9 +28,20 @@ public class OrderPage {
     private final By nameInput = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Имя')]");
 
     /**
+     * Поле отображения ошибки ввода имени
+     */
+    private final By nameInputError = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Имя')]/following-sibling::div[starts-with(@class, 'Input_ErrorMessage')]");
+
+
+    /**
      * Поле для ввода фамилии
      */
     private final By surnameInput = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Фамилия')]");
+
+    /**
+     * Поле отображения ошибки ввода в поле фамилии
+     */
+    private final By surnameInputError = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Фамилия')]/following-sibling::div[starts-with(@class,'Input_ErrorMessage')]");
 
     /**
      * Поле для ввода адреса
@@ -38,9 +49,19 @@ public class OrderPage {
     private final By addressInput = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Адрес')]");
 
     /**
+     * Поле отображения ошибки ввода в поле адрес
+     */
+    private final By addressInputError = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Адрес')]/following-sibling::div[starts-with(@class,'Input_ErrorMessage')]");
+
+    /**
      * Поле для ввода станции метро
      */
     private final By metroInput = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Станция метро')]");
+
+    /**
+     * Поле отображения ошибки ввода в поле метро
+     */
+    private final By metroInputError = By.xpath(".//div[starts-with(@class, 'Order_UnderError')]/div[starts-with(@class,'Order_MetroError')]");
 
     /**
      * Список станций метро
@@ -51,6 +72,11 @@ public class OrderPage {
      * Поле для ввода телефона
      */
     private final By phoneInput = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Телефон')]");
+
+    /**
+     * Поле отображения ошибки ввода в поле телефон
+     */
+    private final By phoneInputError = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Телефон')]/following-sibling::div[starts-with(@class,'Input_ErrorMessage')]");
 
     /**
      * Поле для ввода даты доставки
@@ -101,6 +127,11 @@ public class OrderPage {
      * Текст об успешном оформлении заказа во всплывающем окне
      */
     private final By newOrderSuccessMessage = By.xpath(".//div[starts-with(@class, 'Order_Modal')]//div[(starts-with(@class,'Order_ModalHeader'))]");
+
+    /**
+     * Заголовок первого шага формы заказа самоката
+     */
+    private final By firstStepHeader = By.xpath(".//div[starts-with(@class, 'Order_Content')]/div[(starts-with(@class,'Order_Header'))]");
 
     /**
      * Конструктор класса OrderPage
@@ -235,9 +266,53 @@ public class OrderPage {
 
     /**
      * Метод для получения сообщения об успешном оформлении заказа
+     *
      * @return сообщение о заказе
      */
     public boolean checkNewOrderSuccessMessage() {
         return webDriver.findElement(newOrderSuccessMessage).getText().startsWith("Заказ оформлен");
+    }
+
+    /**
+     * Метод для получения текста о неверном значении в поле "Имя"
+     */
+    public String getNameInputErrorMessage() {
+        return webDriver.findElement(nameInputError).getText();
+    }
+
+    /**
+     * Метод для получения текста о неверном значении в поле "Фамилия"
+     */
+    public String getSurnameInputErrorMessage() {
+        return webDriver.findElement(surnameInputError).getText();
+    }
+
+    /**
+     * Метод для получения текста о неверном значении в поле "Адрес"
+     */
+    public String getAddressInputErrorMessage() {
+        return webDriver.findElement(addressInputError).getText();
+    }
+
+    /**
+     * Метод для получения текста о неверном значении в поле "Метро"
+     */
+    public String getMetroInputErrorMessage() {
+        return webDriver.findElement(metroInputError).getText();
+    }
+
+    /**
+     * Метод для получения текста о неверном значении в поле "Номер телефона"
+     */
+    public String getPhoneInputErrorMessage() {
+        return webDriver.findElement(phoneInputError).getText();
+    }
+
+    /**
+     * Метод для проверки того, что кнопка "Далее" заблокирована (нет возможности перейти ко второму шагу заполнения формы)
+     */
+    public boolean isNextButtonBlocked() {
+        webDriver.findElement(nextButton).click();
+        return webDriver.findElement(firstStepHeader).isDisplayed();
     }
 }

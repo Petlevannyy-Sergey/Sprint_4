@@ -8,14 +8,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObjects.MainPage;
 import pageObjects.OrderPage;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class OrderPageTests {
+public class OrderPagePositiveTests {
     /**
      * Веб-драйвер
      */
@@ -38,7 +37,7 @@ public class OrderPageTests {
      * @param colour цвет самоката
      * @param comment комментарий для курьера
      * */
-    public OrderPageTests(
+    public OrderPagePositiveTests(
             String name,
             String surname,
             String address,
