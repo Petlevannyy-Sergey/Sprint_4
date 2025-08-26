@@ -17,6 +17,12 @@ public class MainPage {
     /** Кнопка "Принять куки" */
     private final By cookieAcceptButton = By.id("rcc-confirm-button");
 
+    /** Кнопка "Заказать" в хедере сайта*/
+    private final By orderButtonInHeader = By.xpath(".//div[starts-with(@class, 'Header_Nav')]/button[starts-with(@class, 'Button_Button')]");
+
+    /** Кнопка "Заказать" в хедере сайта*/
+    private final By orderButtonInBody = By.xpath(".//div[starts-with(@class, 'Home_FinishButton')]/button[starts-with(@class, 'Button_Button')]");
+
     /**
      * Конструктор класса MainPage
      * @param webDriver веб-драйвер
@@ -39,7 +45,7 @@ public class MainPage {
      * @return текст из заголовка раскрывающегося блока
      */
     public String getAccordionHeaderText(int index) {
-        return this.webDriver.findElements(accordionHeaders).get(index).getText();
+        return webDriver.findElements(accordionHeaders).get(index).getText();
     }
 
     /**
@@ -48,14 +54,28 @@ public class MainPage {
      * @return текст из раскрывающегося блока
      * */
     public String getAccordionItemText(int index) {
-        return this.webDriver.findElements(accordionItems).get(index).getText();
+        return webDriver.findElements(accordionItems).get(index).getText();
     }
 
     /**
      * Метод для нажатия на кнопку "Принять куки"
      */
     public void clickOnCookieAcceptButton() {
-        this.webDriver.findElement(cookieAcceptButton).click();
+        webDriver.findElement(cookieAcceptButton).click();
+    }
+
+    /**
+     * Метод для нажатия на кнопку оформления заказа в хедере сайта
+     */
+    public void clickOrderButtonInHeader() {
+        webDriver.findElement(orderButtonInHeader).click();
+    }
+
+    /**
+     * Метод для нажатия на кнопку оформления заказа в теле сайта
+     */
+    public void clickOrderButtonInBody() {
+        webDriver.findElement(orderButtonInBody).click();
     }
 
 }
