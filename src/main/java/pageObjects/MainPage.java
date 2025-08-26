@@ -3,28 +3,53 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-/** Класс описывающий главную страницу */
+/**
+ * Класс описывающий главную страницу
+ */
 public class MainPage {
-    /** WebDriver */
+    /**
+     * WebDriver
+     */
     private final WebDriver webDriver;
 
-    /** Заголовок раскрывающегося элемента */
+    /**
+     * Заголовок раскрывающегося элемента
+     */
     private final By accordionHeaders = By.className("accordion__heading");
 
-    /** Содержание раскрывающегося блока */
+    /**
+     * Содержание раскрывающегося блока
+     */
     private final By accordionItems = By.xpath(".//*[contains(@id, 'accordion__panel')]");
 
-    /** Кнопка "Принять куки" */
+    /**
+     * Кнопка "Принять куки"
+     */
     private final By cookieAcceptButton = By.id("rcc-confirm-button");
 
-    /** Кнопка "Заказать" в хедере сайта*/
+    /**
+     * Кнопка "Заказать" в хедере сайта
+     */
     private final By orderButtonInHeader = By.xpath(".//div[starts-with(@class, 'Header_Nav')]/button[starts-with(@class, 'Button_Button')]");
 
-    /** Кнопка "Заказать" в хедере сайта*/
+    /**
+     * Кнопка "Заказать" в хедере сайта
+     */
     private final By orderButtonInBody = By.xpath(".//div[starts-with(@class, 'Home_FinishButton')]/button[starts-with(@class, 'Button_Button')]");
 
     /**
+     * Ссылка-логотип Яндекс в хедере
+     */
+    private final By yandexLogoLink = By.xpath(".//div[starts-with(@class, 'Header_Logo')]/a[starts-with(@class, 'Header_LogoYandex')]");
+
+    /**
+     * Ссылка-логотип Самокат в хедере
+     */
+    private final By scooterLogoLink = By.xpath(".//div[starts-with(@class, 'Header_Logo')]/a[starts-with(@class, 'Header_LogoScooter')]");
+
+    /**
      * Конструктор класса MainPage
+     *
      * @param webDriver веб-драйвер
      */
     public MainPage(WebDriver webDriver) {
@@ -33,14 +58,16 @@ public class MainPage {
 
     /**
      * Метод для нажатия на заголовок раскрывающегося длока
+     *
      * @param index Индекс элемента
-     * */
+     */
     public void clickAccordionHeader(int index) {
         webDriver.findElements(accordionHeaders).get(index).click();
     }
 
     /**
      * Метод для получения текста в заголовке раскрывающегося блока
+     *
      * @param index индекс элемента
      * @return текст из заголовка раскрывающегося блока
      */
@@ -50,9 +77,10 @@ public class MainPage {
 
     /**
      * Метод для получения текста в раскрывающемся блоке
+     *
      * @param index индекс элемента
      * @return текст из раскрывающегося блока
-     * */
+     */
     public String getAccordionItemText(int index) {
         return webDriver.findElements(accordionItems).get(index).getText();
     }
@@ -78,4 +106,21 @@ public class MainPage {
         webDriver.findElement(orderButtonInBody).click();
     }
 
+    /**
+     * Метод для получения ссылки из логотипа "Яндекс"
+     *
+     * @return ссылка
+     */
+    public String getYandexLogoLink() {
+        return webDriver.findElement(yandexLogoLink).getAttribute("href");
+    }
+
+    /**
+     * Метод для получения ссылки из логотипа "Самокат"
+     *
+     * @return ссылка
+     */
+    public String getScooterLogoLink() {
+        return webDriver.findElement(scooterLogoLink).getAttribute("href");
+    }
 }
