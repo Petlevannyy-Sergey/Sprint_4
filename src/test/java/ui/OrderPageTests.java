@@ -78,8 +78,8 @@ public class OrderPageTests {
      */
     @Before
     public void startUp() {
-        WebDriverManager.firefoxdriver().setup();
-        webDriver = new FirefoxDriver();
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
         this.webDriver.get("https://qa-scooter.praktikum-services.ru");
     }
 
