@@ -57,6 +57,5 @@ public class MainPageLinksTests {
     public void tearDown() {
         webDriver.quit();
     }
-
 }
 
