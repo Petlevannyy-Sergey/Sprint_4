@@ -1,4 +1,4 @@
-package pageObjects;
+package page.objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -46,6 +46,11 @@ public class MainPage {
      * Ссылка-логотип Самокат в хедере
      */
     private final By scooterLogoLink = By.xpath(".//div[starts-with(@class, 'Header_Logo')]/a[starts-with(@class, 'Header_LogoScooter')]");
+
+    /**
+     * Главная страница сайта "Яндекс Самокат"
+     */
+    public static final String url = "https://qa-scooter.praktikum-services.ru/";
 
     /**
      * Конструктор класса MainPage

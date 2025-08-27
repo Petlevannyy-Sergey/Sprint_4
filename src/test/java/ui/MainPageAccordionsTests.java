@@ -1,14 +1,12 @@
 package ui;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pageObjects.MainPage;
+import page.objects.MainPage;
 import static org.junit.Assert.*;
 
 /**
@@ -65,16 +63,14 @@ public class MainPageAccordionsTests {
      */
     @Before
     public void startUp() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.get("https://qa-scooter.praktikum-services.ru");
+        webDriver = Utils.run();
     }
 
     /**
      * Тест для проверки работы раскрывающегося блока и соответствия текста в заголовках и в самих раскрывающихся блоках
      */
     @Test
-    public void CheckAccordionIsCorrect() {
+    public void checkAccordionIsCorrect() {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.clickOnCookieAcceptButton();
         mainPage.clickAccordionHeader(indexOfElement);
@@ -91,6 +87,6 @@ public class MainPageAccordionsTests {
      */
     @After
     public void tearDown() {
-        webDriver.quit();
+        Utils.quit(webDriver);
     }
 }

@@ -1,14 +1,12 @@
 package ui;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pageObjects.OrderStatusPage;
+import page.objects.OrderStatusPage;
 
 import static org.junit.Assert.assertTrue;
 
@@ -39,9 +37,7 @@ public class OrderStatusPageTests {
      */
     @Before
     public void startUp() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.get("https://qa-scooter.praktikum-services.ru/");
+        webDriver = Utils.run();
     }
 
     /**
@@ -76,6 +72,6 @@ public class OrderStatusPageTests {
      */
     @After
     public void tearDown() {
-        webDriver.quit();
+        Utils.quit(webDriver);
     }
 }

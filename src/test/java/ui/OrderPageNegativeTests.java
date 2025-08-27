@@ -1,15 +1,13 @@
 package ui;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pageObjects.MainPage;
-import pageObjects.OrderPage;
+import page.objects.MainPage;
+import page.objects.OrderPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -67,9 +65,7 @@ public class OrderPageNegativeTests {
      */
     @Before
     public void startUp() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        this.webDriver.get("https://qa-scooter.praktikum-services.ru");
+        webDriver = Utils.run();
     }
 
     /**
@@ -107,7 +103,7 @@ public class OrderPageNegativeTests {
      */
     @After
     public void tearDown() {
-        this.webDriver.quit();
+        Utils.quit(webDriver);
     }
 
     /**

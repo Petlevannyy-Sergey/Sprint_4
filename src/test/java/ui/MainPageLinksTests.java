@@ -1,13 +1,12 @@
 package ui;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pageObjects.MainPage;
+import page.objects.MainPage;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /***
@@ -25,9 +24,7 @@ public class MainPageLinksTests {
      */
     @Before
     public void startUp() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-        webDriver.get("https://qa-scooter.praktikum-services.ru/");
+        webDriver = Utils.run();
     }
 
     /**
@@ -46,8 +43,7 @@ public class MainPageLinksTests {
     @Test
     public void checkScooterLinkIsCorrect() {
         MainPage mainPage = new MainPage(webDriver);
-        String scooterUrl = "https://qa-scooter.praktikum-services.ru/";
-        assertTrue("Ссылка в логотипе Самокат не соответствует " + scooterUrl,mainPage.getScooterLogoLink().equals(scooterUrl));
+        assertEquals("Ссылка в логотипе Самокат не соответствует " + MainPage.url, MainPage.url, mainPage.getScooterLogoLink());
     }
 
     /**
@@ -55,7 +51,7 @@ public class MainPageLinksTests {
      */
     @After
     public void tearDown() {
-        webDriver.quit();
+        Utils.quit(webDriver);
     }
 }
 
